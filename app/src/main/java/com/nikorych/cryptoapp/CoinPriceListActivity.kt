@@ -1,5 +1,6 @@
 package com.nikorych.cryptoapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -20,7 +21,8 @@ class CoinPriceListActivity : AppCompatActivity() {
         val adapter = CoinInfoAdapter(this)
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener{
             override fun onCoinClick(coinPriceInfo: CoinPriceInfo) {
-                Toast.makeText(applicationContext, coinPriceInfo.fromSymbol, Toast.LENGTH_SHORT).show()
+               val intent = CoinDetailActivity.newIntent(this@CoinPriceListActivity, coinPriceInfo.fromSymbol)
+                startActivity(intent)
             }
         }
         rvCoinPriceList.adapter = adapter
